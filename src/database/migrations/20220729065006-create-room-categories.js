@@ -1,9 +1,10 @@
 "use strict";
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("tenants", {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable("room_categories", {
       id: {
+        unique: true,
         primaryKey: true,
         type: Sequelize.STRING,
       },
@@ -11,18 +12,15 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
-        field: "t_sch_created_date",
+        field: "t_prodCate_created_date",
       },
 
       updatedAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
-        field: "t_sch_lastModified_date",
+        field: "t_prodCate_lastModified_date",
       },
-    });
-  },
+    }),
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("tenants");
-  },
+  down: (queryInterface) => queryInterface.dropTable("room_categories"),
 };

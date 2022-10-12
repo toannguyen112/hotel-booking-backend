@@ -1,8 +1,8 @@
 {
-  "name": "loyalty",
+  "name": "booking-hotel",
   "version": "1.0.0",
   "main": "app.ts",
-  "repository": "https://github.com/toannguyen112/loyalty.git",
+  "repository": "https://github.com/toannguyen112",
   "author": "wsp",
   "license": "MIT",
   "scripts": {

@@ -1,23 +1,15 @@
 import dotenv from "dotenv";
-import express from "express";
 
+import * as tedious from "tedious";
 import { Sequelize } from "sequelize-typescript";
 import path from "path";
 dotenv.config();
 
-const ssl = {
-  ssl: {
-    require: true,
-    rejectUnauthorized: false,
-  },
-};
 export default class SequelizeService {
-
   static async init() {
     try {
-
       let sequelize = new Sequelize({
-        dialect: "postgres",
+        dialect: "mssql",
         host: process.env.DB_HOST,
         username: process.env.DB_USER,
         password: process.env.DB_PASS,
@@ -25,8 +17,17 @@ export default class SequelizeService {
         define: {
           timestamps: true,
         },
-        dialectOptions: express().get('env') === 'production' ? ssl : {},
+        dialectModule: tedious,
       });
+
+      sequelize
+        .authenticate()
+        .then(() => {
+          console.log("Connection has been established successfully.");
+        })
+        .catch((error) => {
+          console.error("Unable to connect to the database: ", error);
+        });
 
       // init sequelize model
       sequelize.addModels([path.resolve(__dirname, `../models/`)]);

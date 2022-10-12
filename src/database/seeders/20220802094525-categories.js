@@ -4,7 +4,7 @@ module.exports = {
     const { faker } = require("@faker-js/faker");
 
     await queryInterface.bulkInsert(
-      "product_categories",
+      "room_categories",
       [
         {
           t_prodCate_id: `PRC${Math.random()}`,
@@ -24,6 +24,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("product_categories", null, {});
+    await queryInterface.bulkDelete("room_categories", null, {});
   },
 };

@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { auth } from "../middlewares/auth.middleware";
-import ProductCategoryController from "../controllers/Product/product_category.controller";
+import ProductCategoryController from "../controllers/Room/categories.controller";
 
 const route = Router();
 
-route.get("/product-categories", auth, new ProductCategoryController().index);
-route.post("/product-categories/create", auth, new ProductCategoryController().create);
-route.put("/product-categories/update/:id", auth, new ProductCategoryController().update);
-route.delete("/product-categories/delete/:id", auth, new ProductCategoryController().delete);
+route.get("/product-categories", new ProductCategoryController().index);
+route.post("/product-categories/create", new ProductCategoryController().create);
+route.put("/product-categories/update/:id", new ProductCategoryController().update);
+route.delete("/product-categories/delete/:id", new ProductCategoryController().delete);
 
 export default route;

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Product from "../../models/product.model";
-import ProductCategory from "../../models/product_category.model";
+import Product from "../../models/room.model";
+import ProductCategory from "../../models/categories.model";
 export default class ProductController {
   async index(req: Request, res: Response) {
     try {
@@ -35,9 +35,12 @@ export default class ProductController {
     try {
       const { t_schema_id } = req.tenant_user;
       const { id, body } = req.params;
-      const data = await Product.update({ body }, {
-        where: { t_prod_id: id, t_prod_schemaID: t_schema_id }
-      });
+      const data = await Product.update(
+        { body },
+        {
+          where: { t_prod_id: id, t_prod_schemaID: t_schema_id },
+        }
+      );
 
       return res.status(200).json({ message: "OK", data });
     } catch (error) {
@@ -50,7 +53,7 @@ export default class ProductController {
       const { t_schema_id } = req.tenant_user;
       const { id } = req.params;
       await Product.destroy({
-        where: { t_prod_id: id, t_prod_schemaID: t_schema_id }
+        where: { t_prod_id: id, t_prod_schemaID: t_schema_id },
       });
 
       const products = await Product.findAll({});

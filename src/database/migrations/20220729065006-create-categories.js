@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable("room_categories", {
+    queryInterface.createTable("categories", {
       id: {
         unique: true,
         primaryKey: true,
@@ -12,15 +12,13 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
-        field: "t_prodCate_created_date",
       },
 
       updatedAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
-        field: "t_prodCate_lastModified_date",
       },
     }),
 
-  down: (queryInterface) => queryInterface.dropTable("room_categories"),
+  down: (queryInterface) => queryInterface.dropTable("categories"),
 };

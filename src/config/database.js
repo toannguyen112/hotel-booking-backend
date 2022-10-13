@@ -1,10 +1,7 @@
 module.exports = {
-  dialect: "mssql",
-  host: process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  define: {
-    timestamps: true,
-  },
+  database: "hotel-booking",
+  dialect: "mysql",
+  username: "root",
+  password: "root",
+  host: "localhost",
 };

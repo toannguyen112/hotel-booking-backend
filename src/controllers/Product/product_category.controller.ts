@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Product from "../../models/product.model";
-import ProductCategory from "../../models/product_category.model";
+import Product from "../../models/room.model";
+import ProductCategory from "../../models/categories.model";
 export default class ProductCategoryController {
   async index(req: Request, res: Response) {
     try {
@@ -37,12 +37,13 @@ export default class ProductCategoryController {
       const { id, body } = req.params;
 
       await ProductCategory.update(
-        { body }, {
-        where: {
-          t_prodCate_id: id,
-          t_schema_id: t_schema_id,
-        },
-      }
+        { body },
+        {
+          where: {
+            t_prodCate_id: id,
+            t_schema_id: t_schema_id,
+          },
+        }
       );
 
       const categories = await ProductCategory.findAll({});

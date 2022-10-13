@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 
-import * as tedious from "tedious";
 import { Sequelize } from "sequelize-typescript";
 import path from "path";
 dotenv.config();
@@ -9,15 +8,14 @@ export default class SequelizeService {
   static async init() {
     try {
       let sequelize = new Sequelize({
-        dialect: "mssql",
-        host: process.env.DB_HOST,
-        username: process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: process.env.DB_NAME,
+        database: "hotel-booking",
+        dialect: "mysql",
+        username: "root",
+        password: "root",
+        host: "localhost",
         define: {
-          timestamps: true,
+          timestamps: false,
         },
-        dialectModule: tedious,
       });
 
       sequelize

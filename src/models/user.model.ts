@@ -1,16 +1,15 @@
-import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt } from "sequelize-typescript";
+import { Table, PrimaryKey, Column, Model } from "sequelize-typescript";
 
 @Table({
-    tableName: 'users',
-    timestamps: true,
+  tableName: "users",
+  timestamps: true,
 })
 class User extends Model {
-    @PrimaryKey
-    @Column({
-        autoIncrement: false,
-    })
-    t_schema_id?: string;
+  @PrimaryKey
+  @Column({
+    autoIncrement: false,
+  })
+  id: string;
 }
 
 export default User;
-

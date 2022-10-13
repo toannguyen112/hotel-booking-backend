@@ -12,13 +12,11 @@ module.exports = {
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
-        field: "t_prod_created_date",
       },
 
       updatedAt: {
         type: Sequelize.DATE,
         defaultValue: new Date(),
-        field: "t_prod_lastModified_date",
       },
     }),
 

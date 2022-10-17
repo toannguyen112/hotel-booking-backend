@@ -4,8 +4,24 @@ module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable("categories", {
       id: {
-        unique: true,
         primaryKey: true,
+        unique: true,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+      },
+
+      name: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+
+      link: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+
+      image: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
 

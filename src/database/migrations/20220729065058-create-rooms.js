@@ -4,9 +4,79 @@ module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable("rooms", {
       id: {
-        unique: true,
         primaryKey: true,
+        unique: true,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+      },
+
+      tenant_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "tenants",
+          key: "id",
+        },
+      },
+
+      category_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "categories",
+          key: "id",
+        },
+      },
+
+      name: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      exp_date: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+
+      phone: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+
+      info: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+
+      address: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      star: {
+        type: Sequelize.INTEGER,
+        defaultValue: 5,
+        allowNull: true,
+      },
+
+      price: {
+        type: Sequelize.FLOAT,
+        defaultValue: 10000,
+        allowNull: true,
+      },
+
+      image: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      number_room: {
+        type: Sequelize.INTEGER,
+        defaultValue: 2,
+        allowNull: true,
       },
 
       createdAt: {

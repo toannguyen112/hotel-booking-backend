@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-import Room from "../../models/room.model";
-import Category from "../../models/categories.model";
-export default class CategoryController {
+import Room from "../models/room.model";
+
+export default class RoomController {
   async index(req: Request, res: Response) {
     try {
-      const data = await Category.findAll({
-        include: [Room],
-      });
+      const data = await Room.findAll({});
 
       return res.status(200).json({ message: "OK", data });
     } catch (error) {
@@ -16,12 +14,25 @@ export default class CategoryController {
 
   async create(req: Request, res: Response) {
     try {
-      await Category.create({
+      await Room.create({
         ...req.body,
       });
 
-      const categories = await Category.findAll({});
-      return res.status(200).json({ message: "OK", data: categories });
+      const data = await Room.findAll({});
+      return res.status(200).json({ message: "OK", data: data });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  }
+
+  async show(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = await Room.findOne({
+        where: { id },
+      });
+
+      return res.status(200).json({ message: "OK", data: data });
     } catch (error) {
       res.status(500).send(error);
     }
@@ -30,16 +41,14 @@ export default class CategoryController {
   async update(req: Request, res: Response) {
     try {
       const { id, body } = req.params;
-
-      await Category.update(
+      const data = await Room.update(
         { body },
         {
           where: { id },
         }
       );
 
-      const categories = await Category.findAll({});
-      return res.status(200).json({ message: "OK", data: categories });
+      return res.status(200).json({ message: "OK", data });
     } catch (error) {
       res.status(500).send(error);
     }
@@ -52,8 +61,8 @@ export default class CategoryController {
         where: { id },
       });
 
-      const rooms = await Room.findAll({});
-      return res.status(200).json({ message: "OK", data: rooms });
+      const data = await Room.findAll({});
+      return res.status(200).json({ message: "OK", data: data });
     } catch (error) {
       res.status(500).send(error);
     }

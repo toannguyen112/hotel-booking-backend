@@ -1,7 +1,4 @@
-import { Table, Column, Model, CreatedAt, UpdatedAt, BelongsTo, ForeignKey, PrimaryKey, BeforeCreate } from "sequelize-typescript";
-import Helper from "../utils/helpers";
-import ProductCategory from "./categories.model";
-import Tenant from "./tenant.model";
+import { Table, Column, Model, PrimaryKey } from "sequelize-typescript";
 
 @Table({
   tableName: "rooms",
@@ -12,5 +9,26 @@ export default class Room extends Model {
   @Column({
     autoIncrement: false,
   })
-  id!: string;
+  id: number;
+
+  @Column
+  name: string;
+
+  @Column
+  star: number;
+
+  @Column
+  status: string;
+
+  @Column
+  info: string;
+
+  @Column
+  address: string;
+
+  @Column
+  price: number;
+
+  @Column
+  image: string;
 }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import TenantController from "../controllers/Tenant/tenant.controller";
+import TenantController from "../controllers/tenant.controller";
 const route: Router = Router();
 
 route.get("/tenants", new TenantController().index);

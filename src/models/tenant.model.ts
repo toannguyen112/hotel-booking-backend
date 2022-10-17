@@ -1,5 +1,5 @@
-import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt, BeforeCreate } from "sequelize-typescript";
-import Helper from "../utils/helpers";
+import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt } from "sequelize-typescript";
+
 @Table({
   tableName: "tenants",
   timestamps: true,

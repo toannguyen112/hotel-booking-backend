@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   async up(queryInterface) {
-    await queryInterface.bulkInsert("tenants", [
+    await queryInterface.bulkInsert("admins", [
       {
         id: 1,
         username: `admin`,
@@ -10,6 +10,6 @@ module.exports = {
     ]);
   },
   async down(queryInterface) {
-    await queryInterface.bulkDelete("tenants", null, {});
+    await queryInterface.bulkDelete("admins", null, {});
   },
 };

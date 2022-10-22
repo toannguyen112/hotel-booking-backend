@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
+import Category from "../models/categories.model";
 import Room from "../models/room.model";
+import Tenant from "../models/tenant.model";
 
 export default class RoomController {
   async index(req: Request, res: Response) {
@@ -13,9 +15,10 @@ export default class RoomController {
   }
 
   async create(req: Request, res: Response) {
+    const { imageFiles } = req.body.form;
     try {
       await Room.create({
-        ...req.body,
+        ...req.body.form,
       });
 
       const data = await Room.findAll({});
@@ -30,6 +33,7 @@ export default class RoomController {
       const { id } = req.params;
       const data = await Room.findOne({
         where: { id },
+        include: [Category, Tenant],
       });
 
       return res.status(200).json({ message: "OK", data: data });

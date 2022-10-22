@@ -1,4 +1,6 @@
-import { Table, Column, Model, PrimaryKey } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, BelongsTo, ForeignKey } from "sequelize-typescript";
+import Category from "./categories.model";
+import Tenant from "./tenant.model";
 
 @Table({
   tableName: "rooms",
@@ -10,6 +12,14 @@ export default class Room extends Model {
     autoIncrement: false,
   })
   id: number;
+
+  @ForeignKey(() => Category)
+  @Column
+  category_id: number;
+
+  @ForeignKey(() => Tenant)
+  @Column
+  tenant_id: number;
 
   @Column
   name: string;
@@ -31,4 +41,10 @@ export default class Room extends Model {
 
   @Column
   image: string;
+
+  @BelongsTo(() => Category)
+  category: Category;
+
+  @BelongsTo(() => Tenant)
+  tenant: Tenant;
 }

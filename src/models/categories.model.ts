@@ -10,4 +10,13 @@ export default class Category extends Model {
     autoIncrement: false,
   })
   id: number;
+
+  @Column
+  name: string;
+
+  @Column
+  link: string;
+
+  @Column
+  image: string;
 }

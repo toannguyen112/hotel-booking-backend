@@ -34,6 +34,7 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
         allowNull: true,
+        defaultValue: "INACTIVE",
       },
 
       exp_date: {
@@ -58,13 +59,13 @@ module.exports = {
 
       star: {
         type: Sequelize.INTEGER,
-        defaultValue: 5,
+        defaultValue: 0,
         allowNull: true,
       },
 
       price: {
         type: Sequelize.FLOAT,
-        defaultValue: 10000,
+        defaultValue: 0,
         allowNull: true,
       },
 
@@ -75,7 +76,7 @@ module.exports = {
 
       number_room: {
         type: Sequelize.INTEGER,
-        defaultValue: 2,
+        defaultValue: 0,
         allowNull: true,
       },
 

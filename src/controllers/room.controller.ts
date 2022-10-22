@@ -15,10 +15,14 @@ export default class RoomController {
   }
 
   async create(req: Request, res: Response) {
-    const { imageFiles } = req.body.form;
+    const images = req["files"];
+    console.log(images);
+
+    const reqData = JSON.parse(req.body["data"]);
+
     try {
       await Room.create({
-        ...req.body.form,
+        ...reqData,
       });
 
       const data = await Room.findAll({});

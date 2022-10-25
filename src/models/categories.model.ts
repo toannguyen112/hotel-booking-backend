@@ -7,7 +7,7 @@ import { Table, Column, Model, PrimaryKey } from "sequelize-typescript";
 export default class Category extends Model {
   @PrimaryKey
   @Column({
-    autoIncrement: false,
+    autoIncrement: true,
   })
   id: number;
 

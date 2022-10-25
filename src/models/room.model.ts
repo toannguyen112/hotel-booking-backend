@@ -1,5 +1,7 @@
-import { Table, Column, Model, PrimaryKey, BelongsTo, ForeignKey } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, BelongsTo, ForeignKey, BelongsToMany } from "sequelize-typescript";
 import Category from "./categories.model";
+import File from "./file.model";
+import RoomFile from "./roomFile.model";
 import Tenant from "./tenant.model";
 
 @Table({
@@ -9,7 +11,7 @@ import Tenant from "./tenant.model";
 export default class Room extends Model {
   @PrimaryKey
   @Column({
-    autoIncrement: false,
+    autoIncrement: true,
   })
   id: number;
 
@@ -42,9 +44,23 @@ export default class Room extends Model {
   @Column
   image: string;
 
+  @BelongsToMany(() => File, { as: "images", through: () => RoomFile })
+
   @BelongsTo(() => Category)
   category: Category;
 
   @BelongsTo(() => Tenant)
   tenant: Tenant;
+
+  public transform(item) {
+    return {
+      ...item
+    }
+  }
+
+  public transformDetails(item) {
+    return {
+      ...item
+    }
+  }
 }

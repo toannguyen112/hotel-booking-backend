@@ -7,7 +7,7 @@ import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt } from "sequeliz
 class Tenant extends Model {
   @PrimaryKey
   @Column({
-    autoIncrement: false,
+    autoIncrement: true,
   })
   id: string;
 

@@ -12,11 +12,7 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(null, `${file.originalname}`);
 
-    if (fs.existsSync(path.join(pathFolder, file.originalname))) {
-      return;
-    } else {
-      cb(null, file.originalname);
-    }
+    if (!fs.existsSync(path.join(pathFolder, file.originalname))) cb(null, file.originalname);
   },
 });
 

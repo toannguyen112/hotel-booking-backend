@@ -1,5 +1,5 @@
 import { Router } from "express";
-import RoomController from "../controllers/room.controller";
+import MediaController from "../controllers/media.controller";
 import fs from "fs";
 import path from "path";
 const multer = require("multer");
@@ -24,10 +24,8 @@ const upload = multer({ storage: storage });
 
 const route = Router();
 
-route.get("/rooms/index", new RoomController().index);
-route.post("/rooms/create", upload.array("files"), new RoomController().create);
-route.get("/rooms/show/:id", new RoomController().show);
-route.put("/rooms/update/:id", new RoomController().update);
-route.delete("/rooms/delete/:id", new RoomController().delete);
+route.get("/media/index", new MediaController().index);
+route.post("/media/store", upload.array("files"), new MediaController().store);
+route.delete("/media/delete/:id", new MediaController().delete);
 
 export default route;

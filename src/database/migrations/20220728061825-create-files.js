@@ -14,7 +14,43 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      disk: {
+        type: Sequelize.STRING,
+      },
+
+      path: {
+        type: Sequelize.STRING,
+      },
+
       extension: {
+        type: Sequelize.STRING,
+      },
+
+      mime: {
+        type: Sequelize.STRING,
+      },
+
+      size: {
+        type: Sequelize.INTEGER,
+      },
+
+      width: {
+        type: Sequelize.INTEGER,
+      },
+
+      height: {
+        type: Sequelize.INTEGER,
+      },
+
+      alt: {
+        type: Sequelize.STRING,
+      },
+
+      creator: {
+        type: Sequelize.STRING,
+      },
+
+      editor: {
         type: Sequelize.STRING,
       },
 

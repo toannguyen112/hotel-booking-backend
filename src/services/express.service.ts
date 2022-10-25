@@ -22,6 +22,8 @@ export default class ExpressService {
 
       app.use(cors());
       app.use(compression());
+      app.use(express.static("storage"));
+      app.use("/uploads", express.static("uploads"));
       app.use(bodyParser.urlencoded({ extended: true }));
       app.use(bodyParser.json());
       app.use(express.json());

@@ -43,7 +43,7 @@ export default class File extends Model<File> {
   height: number;
 
   @BelongsToMany(() => Room, { as: "images", through: () => RoomFile })
-    
+
   public static async storeMedia(image: any, uploads: string = "uploads", disk: string = "storage") {
     const path = `/${uploads}/${image.filename}`;
     const diskPath = disk;
@@ -59,11 +59,7 @@ export default class File extends Model<File> {
       size: image.size,
     };
 
-    const data = await File.findOne({
-      where: {
-        filename: image.filename,
-      },
-    });
+    const data = await File.findOne({ where: { filename: image.filename } });
 
     if (!data) {
       const fileData = await File.create(file);

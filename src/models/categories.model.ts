@@ -1,4 +1,5 @@
-import { Table, Column, Model, PrimaryKey } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, ForeignKey, BelongsTo } from "sequelize-typescript";
+import File from "./file.model";
 
 @Table({
   tableName: "categories",
@@ -14,9 +15,28 @@ export default class Category extends Model {
   @Column
   name: string;
 
+  @ForeignKey(() => File)
+  @Column
+  file_id: number;
+
   @Column
   link: string;
 
   @Column
   image: string;
+
+  @BelongsTo(() => File)
+
+  public transform(item) {
+    return {
+      ...item
+    }
+  }
+
+  public transformDetails(item) {
+    return {
+      ...item
+    }
+  }
+
 }

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable("categories", {
+    queryInterface.createTable("regions", {
       id: {
         primaryKey: true,
         unique: true,
@@ -10,31 +10,43 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
+      country_id: {
+        type: Sequelize.STRING,
+      },
+
+      level: {
+        type: Sequelize.STRING,
+      },
+
+      code: {
+        type: Sequelize.STRING,
+      },
+
+      parent_code: {
+        type: Sequelize.STRING,
+      },
+
+      type: {
+        type: Sequelize.STRING,
+      },
+
       name: {
-        allowNull: true,
         type: Sequelize.STRING,
       },
 
-      file_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "files",
-          key: "id",
-        },
-      },
-
-      status: {
-        allowNull: true,
+      name_with_type: {
         type: Sequelize.STRING,
       },
 
-      link: {
-        allowNull: true,
+      path: {
         type: Sequelize.STRING,
       },
 
-      image: {
-        allowNull: true,
+      path_with_type: {
+        type: Sequelize.STRING,
+      },
+
+      sort: {
         type: Sequelize.STRING,
       },
 
@@ -49,5 +61,5 @@ module.exports = {
       },
     }),
 
-  down: (queryInterface) => queryInterface.dropTable("categories"),
+  down: (queryInterface) => queryInterface.dropTable("regions"),
 };

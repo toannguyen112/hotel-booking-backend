@@ -26,7 +26,20 @@ module.exports = {
         },
       },
 
+      city_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "regions",
+          key: "id",
+        },
+      },
+
       name: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      slug: {
         type: Sequelize.STRING,
         allowNull: true,
       },
@@ -54,6 +67,11 @@ module.exports = {
 
       address: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      size: {
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
 

@@ -10,8 +10,12 @@ import { ApiFeatures } from "../test/apiFeatures";
 export default class RoomController {
   async index(req: Request, res: Response) {
     const query = { ...req.query };
+
     const queryObject = {
-      status: req.query.status,
+      category_id: req.query.category_id,
+      city_id: req.query.city_id,
+      price: req.query.price,
+      size: req.query.size,
     };
 
     const conditions = {};
@@ -24,13 +28,41 @@ export default class RoomController {
         value: item[1],
       };
     });
+
     for (let index = 0; index < arrQueryObject.length; index++) {
       switch (arrQueryObject[index].key) {
-        case "status":
-          const voucherStatus = typeof arrQueryObject[index].value === "string" ? [arrQueryObject[index].value] : arrQueryObject[index].value;
-          if (Array.isArray(voucherStatus)) {
-            conditions["status"] = {
-              [Op.in]: voucherStatus,
+        case "category_id":
+          const category_id = typeof arrQueryObject[index].value === "string" ? [arrQueryObject[index].value] : arrQueryObject[index].value;
+          if (Array.isArray(category_id)) {
+            conditions["category_id"] = {
+              [Op.in]: category_id,
+            };
+          }
+          break;
+
+        case "city_id":
+          const city_id = typeof arrQueryObject[index].value === "string" ? [arrQueryObject[index].value] : arrQueryObject[index].value;
+          if (Array.isArray(city_id)) {
+            conditions["city_id"] = {
+              [Op.in]: city_id,
+            };
+          }
+          break;
+
+        case "price":
+          const price = typeof arrQueryObject[index].value === "string" ? [arrQueryObject[index].value] : arrQueryObject[index].value;
+          if (Array.isArray(price)) {
+            conditions["price"] = {
+              [Op.in]: price,
+            };
+          }
+          break;
+
+        case "size":
+          const size = typeof arrQueryObject[index].value === "string" ? [arrQueryObject[index].value] : arrQueryObject[index].value;
+          if (Array.isArray(size)) {
+            conditions["size"] = {
+              [Op.in]: size,
             };
           }
           break;
@@ -39,22 +71,26 @@ export default class RoomController {
       }
     }
 
+    console.log(query);
+    console.log(conditions);
+
+
     const objQuery = new ApiFeatures(query)
       .filter(conditions)
-      .sort(query.sort_field || "created_date", query.sort_order || "DESC")
       .limitFields()
       .paginate()
       .getObjQuery();
 
-    // const { count, rows }: any = await Room.find(objQuery);
-    // const items = [];
-    // const result = {
-    //   page: Number(query?.page) * 1,
-    //   pageSize: Number(query?.page_size) * 1,
-    //   totalItems: count || 0,
-    //   items: [],
-    // };
+    const { count, rows }: any = await Room.findAndCountAll(objQuery);
+    const items = rows;
+    const result = {
+      page: Number(query?.page) * 1,
+      pageSize: Number(query?.page_size) * 1,
+      totalItems: count || 0,
+      items: items,
+    };
 
+    res.status(200).json(result)
   }
 
   async create(req: Request, res: Response) {

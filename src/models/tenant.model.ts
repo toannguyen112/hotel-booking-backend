@@ -11,6 +11,24 @@ class Tenant extends Model {
   })
   id: string;
 
+  @Column
+  username: string
+
+  @Column
+  name: string
+
+  @Column
+  phone: number
+
+  @Column
+  password: string
+
+  @Column
+  address: string
+
+  @Column
+  status: string
+
   @CreatedAt
   createdAt: Date;
 

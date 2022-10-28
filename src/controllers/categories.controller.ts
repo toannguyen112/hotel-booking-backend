@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import Room from "../models/room.model";
 import Category from "../models/categories.model";
+import File from "../models/file.model";
 export default class CategoryController {
   async index(req: Request, res: Response) {
     try {
-      const data = await Category.findAll({});
+      const data = await Category.findAll({
+        include: [File]
+      });
 
       return res.status(200).json({ message: "OK", data });
     } catch (error) {

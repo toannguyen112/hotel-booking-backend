@@ -1,6 +1,7 @@
 import { Table, Column, Model, PrimaryKey, BelongsTo, ForeignKey, BelongsToMany } from "sequelize-typescript";
 import Category from "./categories.model";
 import File from "./file.model";
+import Region from "./regions.model";
 import RoomFile from "./roomFile.model";
 import Tenant from "./tenant.model";
 
@@ -19,6 +20,11 @@ export default class Room extends Model {
   @Column
   category_id: number;
 
+
+  @ForeignKey(() => Region)
+  @Column
+  city_id: number;
+
   @ForeignKey(() => Tenant)
   @Column
   tenant_id: number;
@@ -27,10 +33,16 @@ export default class Room extends Model {
   name: string;
 
   @Column
+  slug: string;
+
+  @Column
   star: number;
 
   @Column
   status: string;
+
+  @Column
+  size: number;
 
   @Column
   info: string;
@@ -51,6 +63,9 @@ export default class Room extends Model {
 
   @BelongsTo(() => Tenant)
   tenant: Tenant;
+
+  @BelongsTo(() => Region)
+  city: Region;
 
   public transform(item) {
     return {

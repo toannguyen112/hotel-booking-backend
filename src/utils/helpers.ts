@@ -1,4 +1,3 @@
-require("dotenv").config();
 export default class Helper {
   static randomString(length: number): string {
     var result: string = "";
@@ -23,4 +22,16 @@ export default class Helper {
       });
     });
   }
+
+  static renderSlug(slug: string) {
+    return slug.toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-')
+  }
+
 }

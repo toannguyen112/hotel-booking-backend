@@ -10,7 +10,25 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
-      name: {
+      data: {
+        type: Sequelize.TEXT,
+      },
+
+      type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      user_agent: {
+        type: Sequelize.STRING,
+      },
+
+      ip_address: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      request_url: {
         type: Sequelize.STRING,
       },
 

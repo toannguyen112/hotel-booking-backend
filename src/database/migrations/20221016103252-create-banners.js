@@ -19,6 +19,11 @@ module.exports = {
         allowNull: true,
       },
 
+      position: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+
       image: {
         type: Sequelize.STRING,
       },

@@ -28,6 +28,11 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      slug: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+
       link: {
         allowNull: true,
         type: Sequelize.STRING,

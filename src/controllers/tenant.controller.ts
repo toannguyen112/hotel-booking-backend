@@ -15,16 +15,7 @@ export default class TenantController {
     }
   }
 
-  async index(req: Request, res: Response) {
-    try {
-      const data = await Tenant.findAll({});
-      return res.status(200).json(data);
-    } catch (error) {
-      res.status(500);
-    }
-  }
-
-  async create(req: Request, res: Response) {
+  async register(req: Request, res: Response) {
     try {
       const data = await Tenant.create(req.body);
       return res.status(200).json(data);
@@ -33,35 +24,13 @@ export default class TenantController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  async logout(req: Request, res: Response) {
     try {
-      const { t_schema_id } = req.tenant_user;
-      const { id, body } = req.params;
-      const data = await Tenant.update(
-        { body },
-        {
-          where: { t_prod_id: id, t_prod_schemaID: t_schema_id },
-        }
-      );
-
-      return res.status(200).json({ message: "OK", data });
+      const data = await Tenant.create(req.body);
+      return res.status(200).json(data);
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500);
     }
   }
 
-  async delete(req: Request, res: Response) {
-    try {
-      const { t_schema_id } = req.tenant_user;
-      const { id } = req.params;
-      await Tenant.destroy({
-        where: { t_prod_id: id, t_prod_schemaID: t_schema_id },
-      });
-
-      const data = await Tenant.findAll({});
-      return res.status(200).json({ message: "OK", data: data });
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  }
 }

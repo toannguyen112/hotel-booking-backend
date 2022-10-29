@@ -10,6 +10,26 @@ class User extends Model {
     autoIncrement: true,
   })
   id: string;
+
+  @Column
+  name: string;
+
+  @Column
+  username: string;
+
+  @Column
+  password: string;
+
+  @Column
+  age: string;
+
+
+  @Column
+  address: string;
+
+  @Column
+  phone: string;
+
 }
 
 export default User;

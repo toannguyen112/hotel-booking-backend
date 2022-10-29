@@ -71,10 +71,6 @@ export default class RoomController {
       }
     }
 
-    console.log(query);
-    console.log(conditions);
-
-
     const objQuery = new ApiFeatures(query)
       .filter(conditions)
       .limitFields()
@@ -82,7 +78,10 @@ export default class RoomController {
       .getObjQuery();
 
     const { count, rows }: any = await Room.findAndCountAll(objQuery);
-    const items = rows;
+    const items = rows.map((item) => {
+      return item;
+    });
+
     const result = {
       page: Number(query?.page) * 1,
       pageSize: Number(query?.page_size) * 1,

@@ -6,10 +6,17 @@ export default class UserController {
   async login(req: Request, res: Response) {
     const { username, password } = req.body;
     const user = await User.findOne(username);
+    console.log(user);
+
     return res.status(200).json({
       message: "User login success",
       data: user,
     });
+  }
+
+  async index(req: Request, res: Response) {
+    const data = await User.findAll({});
+    return res.json(data).status(200);
   }
 
   async register(req: Request, res: Response) {
@@ -17,10 +24,7 @@ export default class UserController {
       const data = await User.create(req.body);
       return res.status(200).json(data);
     } catch (error) {
-      res.status(500).json({
-        message: "",
-        data: ""
-      });
+      res.status(500);
     }
   }
 

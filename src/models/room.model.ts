@@ -54,6 +54,9 @@ export default class Room extends Model {
   price: number;
 
   @Column
+  phone: number;
+
+  @Column
   image: string;
 
   @BelongsToMany(() => File, { as: "images", through: () => RoomFile })

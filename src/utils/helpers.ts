@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+import bcrypt from "bcrypt";
 export default class Helper {
   static randomString(length: number): string {
     var result: string = "";
@@ -11,9 +12,7 @@ export default class Helper {
   }
 
   static staticUrl(path: string): string {
-    // return `${process.env.STATIC_URL}${path}`;
-    return `${"http://localhost:8000"}${path}`;
-
+    return `${process.env.STATIC_URL}${path}`;
   }
 
   static applyMixins(derivedCtor: any, baseCtors: any[]) {
@@ -37,20 +36,20 @@ export default class Helper {
 
   static generateToken(model: any) {
     const token: string = jwt.sign(
-      {
-        user: {
-          id: model.id,
-          name: model.name,
-        },
-      },
-      "SERVER_JWT_SECRET",
-      { expiresIn: "1h" }
+      { user: { id: model.id, name: model.name } },
+      process.env.SERVER_JWT_SECRET,
+      { expiresIn: process.env.SERVER_JWT_TIMEOUT }
     );
 
     model.tokens = model.tokens ? model.tokens.concat({ token }) : [{ token }];
     model.save();
 
     return token;
+  }
+
+  static async hashPassword(password: string = "123", number: number = 8) {
+    const hashedPassword = await bcrypt.hash(password, number);
+    return hashedPassword;
   }
 
 }

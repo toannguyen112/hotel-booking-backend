@@ -1,6 +1,7 @@
 import { Router } from "express";
 import UserController from "../controllers/user.controller";
 import { auth } from "../middlewares/auth.middleware";
+import User from "../models/user.model";
 const route: Router = Router();
 
 route.get("/user/get-users", new UserController().getUsers);

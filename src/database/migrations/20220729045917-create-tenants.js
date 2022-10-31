@@ -23,6 +23,12 @@ module.exports = {
         type: Sequelize.STRING,
       },
 
+      tokens: {
+        allowNull: true,
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+
       address: {
         allowNull: true,
         type: Sequelize.STRING,

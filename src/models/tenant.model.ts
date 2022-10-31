@@ -1,5 +1,8 @@
-import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt } from "sequelize-typescript";
+import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt, DataType } from "sequelize-typescript";
 
+interface typeTokens {
+  token: string
+}
 @Table({
   tableName: "tenants",
   timestamps: true,
@@ -28,6 +31,14 @@ class Tenant extends Model {
 
   @Column
   status: string
+
+  @Column({
+    type: DataType.JSON,
+    get() {
+      return this.getDataValue('tokens');
+    }
+  })
+  tokens: Array<typeTokens>;
 
   @CreatedAt
   createdAt: Date;

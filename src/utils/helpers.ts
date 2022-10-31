@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 export default class Helper {
   static randomString(length: number): string {
     var result: string = "";
@@ -32,6 +33,24 @@ export default class Helper {
       .replace(/\s+/g, '-')
       .replace(/[^\w-]+/g, '')
       .replace(/--+/g, '-')
+  }
+
+  static generateToken(model: any) {
+    const token: string = jwt.sign(
+      {
+        user: {
+          id: model.id,
+          name: model.name,
+        },
+      },
+      "SERVER_JWT_SECRET",
+      { expiresIn: "1h" }
+    );
+
+    model.tokens = model.tokens ? model.tokens.concat({ token }) : [{ token }];
+    model.save();
+
+    return token;
   }
 
 }

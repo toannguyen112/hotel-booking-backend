@@ -10,6 +10,14 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
+      admin_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "admins",
+          key: "id",
+        },
+      },
+
       name: {
         allowNull: true,
         type: Sequelize.STRING,
@@ -26,6 +34,12 @@ module.exports = {
       age: {
         allowNull: true,
         type: Sequelize.INTEGER,
+      },
+
+      tokens: {
+        allowNull: true,
+        type: Sequelize.JSON,
+        defaultValue: []
       },
 
       address: {

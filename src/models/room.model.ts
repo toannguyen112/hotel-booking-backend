@@ -42,6 +42,9 @@ export default class Room extends Model {
   status: string;
 
   @Column
+  exp_date: Date;
+
+  @Column
   size: number;
 
   @Column

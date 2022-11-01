@@ -53,6 +53,7 @@ module.exports = {
       exp_date: {
         type: Sequelize.DATE,
         allowNull: true,
+        defaultValue: new Date()
       },
 
       phone: {

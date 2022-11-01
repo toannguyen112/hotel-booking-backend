@@ -18,7 +18,9 @@ export default class RoomController {
       size: req.query.size,
     };
 
-    const conditions = {};
+    const conditions = {
+      status: "ACTIVE"
+    };
 
     const excludedFields = ["page", "page_size", "sort_field", "sort_order", "fields"];
     excludedFields.forEach((field) => delete queryObject[field]);
@@ -78,6 +80,7 @@ export default class RoomController {
       .getObjQuery();
 
     const { count, rows }: any = await Room.findAndCountAll(objQuery);
+
     const items = rows.map((item) => {
       return item;
     });

@@ -25,6 +25,7 @@ const upload = multer({ storage: storage });
 const route = Router();
 
 route.get("/rooms/index", new RoomController().index);
+route.get("/rooms/get-rooms", new RoomController().getRooms);
 route.post("/rooms/create", upload.array("files"), new RoomController().create);
 route.get("/rooms/show/:id", new RoomController().show);
 route.put("/rooms/update/:id", new RoomController().update);

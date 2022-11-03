@@ -36,6 +36,12 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
+      status: {
+        allowNull: true,
+        type: Sequelize.STRING,
+        defaultValue: "INACTIVE"
+      },
+
       tokens: {
         allowNull: true,
         type: Sequelize.JSON,

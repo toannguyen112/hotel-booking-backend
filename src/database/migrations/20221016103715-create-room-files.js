@@ -3,6 +3,13 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable("room_files", {
+      id: {
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+      },
+
       file_id: {
         type: Sequelize.INTEGER,
         references: {

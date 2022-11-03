@@ -152,29 +152,4 @@ export default class RoomController {
     }
   }
 
-  async getRooms(req, res) {
-
-    try {
-      let rooms = await Room.findAll({});
-
-      // example array of 150 items to be paged
-      const items = [...rooms];
-
-      // get page from query params or default to first page
-      const page = parseInt(req.query.page) || 1;
-
-      // get pager object for specified page
-      const pageSize = 2;
-      const pager = paginate(items.length, page, pageSize);
-
-      // get page of items from items array
-      const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-
-      // return pager object and current page of items
-      return res.json({ pager, pageOfItems });
-
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  }
 }

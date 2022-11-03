@@ -1,11 +1,11 @@
 import jwt, { Secret } from "jsonwebtoken";
 import { env } from "process";
 import { Request, Response, NextFunction } from "express";
-import User from "../models/user.model";
+import Tenant from "../models/tenant.model";
 
 export const SERVER_JWT_SECRET: Secret = env.SERVER_JWT_SECRET;
 
-export const auth = async (req: Request, res: Response, next: NextFunction) => {
+export const tenantAuth = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token: string = req.header("Authorization")?.replace("Bearer ", "");
 
@@ -13,19 +13,18 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
 
         const decoded: any = jwt.verify(token, SERVER_JWT_SECRET);
 
-        const user: User = await User.findOne({ where: { id: decoded.user.id } });
+        const tenant: Tenant = await Tenant.findOne({ where: { id: decoded.tenant.id } });
 
-        const hasToken = user.tokens.find((t: { token: string }) => t.token === token);
+        const hasToken = tenant.tokens.find((t: { token: string }) => t.token === token);
 
-        if (!hasToken || !user) throw new Error();
+        if (!hasToken || !tenant) throw new Error();
 
-        req.user = user;
+        req.tenant = tenant;
         req.token = token;
 
         next();
 
     } catch (err) {
-        console.log(err);
-        return res.status(401).send({ message: 'Please authenticate user' });
+        return res.status(401).send({ message: 'Please authenticate tenant' });
     }
 };

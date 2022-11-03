@@ -1,9 +1,11 @@
-import { Table, PrimaryKey, Column, Model, ForeignKey, DataType } from "sequelize-typescript";
+import { Table, PrimaryKey, Column, Model, ForeignKey, DataType, BelongsToMany } from "sequelize-typescript";
 import { Request, Response } from "express";
 require('dotenv').config()
 import bcrypt from "bcrypt";
 import Admin from "./admin.model";
 import Helper from "../utils/Helpers";
+import Room from "./room.model";
+import UserRoom from "./userRoom.model";
 
 interface typeTokens {
   token: string
@@ -21,6 +23,9 @@ class User extends Model {
 
   @Column
   name: string;
+
+  @Column
+  status: string;
 
   @ForeignKey(() => Admin)
   @Column
@@ -49,6 +54,8 @@ class User extends Model {
 
   @Column
   phone: string;
+
+  @BelongsToMany(() => Room, { as: "rooms", through: () => UserRoom })
 
   async login(req: Request, res: Response,): Promise<any> {
     try {

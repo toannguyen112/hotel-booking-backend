@@ -4,6 +4,8 @@ import File from "./file.model";
 import Region from "./regions.model";
 import RoomFile from "./roomFile.model";
 import Tenant from "./tenant.model";
+import User from "./user.model";
+import UserRoom from "./userRoom.model";
 
 @Table({
   tableName: "rooms",
@@ -63,6 +65,8 @@ export default class Room extends Model {
   image: string;
 
   @BelongsToMany(() => File, { as: "images", through: () => RoomFile })
+
+  @BelongsToMany(() => User, { as: "users", through: () => UserRoom })
 
   @BelongsTo(() => Category)
   category: Category;

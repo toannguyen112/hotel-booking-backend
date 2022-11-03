@@ -1,11 +1,11 @@
 import jwt, { Secret } from "jsonwebtoken";
 import { env } from "process";
 import { Request, Response, NextFunction } from "express";
-import User from "../models/user.model";
+import Admin from "../models/admin.model";
 
 export const SERVER_JWT_SECRET: Secret = env.SERVER_JWT_SECRET;
 
-export const auth = async (req: Request, res: Response, next: NextFunction) => {
+export const adminAuth = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token: string = req.header("Authorization")?.replace("Bearer ", "");
 
@@ -13,19 +13,18 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
 
         const decoded: any = jwt.verify(token, SERVER_JWT_SECRET);
 
-        const user: User = await User.findOne({ where: { id: decoded.user.id } });
+        const admin: Admin = await Admin.findOne({ where: { id: decoded.admin.id } });
 
-        const hasToken = user.tokens.find((t: { token: string }) => t.token === token);
+        const hasToken = admin.tokens.find((t: { token: string }) => t.token === token);
 
-        if (!hasToken || !user) throw new Error();
+        if (!hasToken || !admin) throw new Error();
 
-        req.user = user;
+        req.admin = admin;
         req.token = token;
 
         next();
 
     } catch (err) {
-        console.log(err);
-        return res.status(401).send({ message: 'Please authenticate user' });
+        return res.status(401).send({ message: 'Please authenticate admin' });
     }
 };

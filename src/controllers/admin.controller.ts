@@ -1,17 +1,11 @@
-import { Request, Response } from "express";
 import Admin from "../models/admin.model";
-
+import { Request, Response } from "express";
 export default class AdminController {
   async login(req: Request, res: Response) {
-    const { name, password } = req.body;
-    const admin = await Admin.findOne(name);
-    console.log(Admin);
-
-    return res.status(200).json({
-      message: "Admin login success",
-      data: Admin,
-    });
+    return new Admin().login(req, res);
   }
 
-  async logout(req: Request, res: Response) { }
+  async logout(req: Request, res: Response) {
+    return new Admin().logout(req, res);
+  }
 }

@@ -9,6 +9,6 @@ route.post("/user/login", auth, new UserController().login);
 route.post("/user/register", new UserController().register);
 route.post("/user/logout", auth, new UserController().logout);
 route.post("/user/order", auth, new UserController().order);
-route.get("/user/:id/get-user-order", auth, new UserController().getUserOrder);
+route.get("/user/:id/get-user-order", new UserController().getUserOrder);
 
 export default route;

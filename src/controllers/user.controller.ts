@@ -63,14 +63,13 @@ export default class UserController {
     try {
       const { id } = req.params;
 
-      const data = await User.findOne({
-        where: { id }, include: [
-          {
-            model: Room,
-            as: 'rooms'
-          }
-        ]
-      });
+      const order = await UserRoom.findAll({
+        where: { user_id: id },
+        include: [Room]
+      })
+
+      const data = order.map((item) => item.transform(item));
+
 
       return res.status(200).json({ message: "OK", data: data });
     } catch (error) {

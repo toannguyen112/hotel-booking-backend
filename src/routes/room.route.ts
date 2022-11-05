@@ -21,7 +21,6 @@ var storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
 const route = Router();
 
 route.get("/rooms/index", new RoomController().index);

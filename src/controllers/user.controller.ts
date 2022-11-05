@@ -29,7 +29,7 @@ export default class UserController {
 
       return res.status(200).json({ message: "OK", data: data });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500);
     }
   }
 
@@ -40,7 +40,7 @@ export default class UserController {
       const data = await User.findAll({});
       return res.status(200).json({ message: "OK", data: data });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500);
     }
   }
 
@@ -60,6 +60,7 @@ export default class UserController {
   }
 
   async getUserOrder(req: Request, res: Response) {
+
     try {
       const { id } = req.params;
 
@@ -73,7 +74,18 @@ export default class UserController {
 
       return res.status(200).json({ message: "OK", data: data });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500);
+    }
+  }
+
+  async profile(req: Request, res: Response) {
+    const { id } = req.user;
+    try {
+      const user = await User.findOne({ where: { id } })
+      return res.status(200).json({ message: "OK", data: user });
+
+    } catch (error) {
+      res.status(500);
     }
   }
 

@@ -103,8 +103,6 @@ class User extends Model {
         password: hashPassword,
       });
 
-      Helper.generateToken(newUser);
-
       return res.status(200).json({
         message: "Register successfully",
         data: newUser,

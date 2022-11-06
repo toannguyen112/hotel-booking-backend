@@ -46,11 +46,11 @@ class Admin extends Model {
 
       if (!foundAdmin) return res.status(500).send("Name of admin is not correct");
 
-      const isMatch: boolean = bcrypt.compareSync(req.body.password, foundAdmin.password);
+      const isMatch: boolean = req.body.password === foundAdmin.password;
 
       if (isMatch) {
 
-        const token = Helper.generateToken(foundAdmin);
+        const token = Helper.generateToken(foundAdmin, 'admin');
 
         return res.status(200).json({
           message: "login successfully",
@@ -60,38 +60,6 @@ class Admin extends Model {
       }
 
       return res.status(500).send("Password is not correct");
-
-    } catch (error) {
-      console.log(error);
-      res.status(500);
-    }
-  }
-
-  async register(req: Request, res: Response): Promise<any> {
-
-    try {
-      const { username, password } = req.body;
-
-      const foundAdmin = await Admin.findOne({ where: { username } });
-
-      if (foundAdmin) return res.status(200).json({ message: "Admin is exit" });
-
-      const hashPassword = await Helper.hashPassword(password);
-
-      const admin = await Admin.findOne();
-
-      const newUser = await Admin.create({
-        username: username,
-        admin_id: admin.id,
-        password: hashPassword,
-      });
-
-      Helper.generateToken(newUser);
-
-      return res.status(200).json({
-        message: "Register successfully",
-        data: newUser,
-      });
 
     } catch (error) {
       console.log(error);

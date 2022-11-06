@@ -45,13 +45,22 @@ export default class UserController {
   }
 
   async order(req: Request, res: Response) {
-
     const { id } = req.user;
+    const { room_id } = req.body;
+
+    const foundOrder = await UserRoom.findOne({
+      where: {
+        user_id: id,
+        room_id,
+      }
+    });
+
+    if (foundOrder) return res.status(400).json({ message: "Phòng đã được đặt" });
 
     try {
       const data = await UserRoom.create({
         user_id: id,
-        room_id: req.body.room_id,
+        room_id: room_id
       });
       return res.status(200).json({ message: "Order Success", data: data });
     } catch (error) {

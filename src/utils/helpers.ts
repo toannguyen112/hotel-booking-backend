@@ -34,9 +34,21 @@ export default class Helper {
       .replace(/--+/g, '-')
   }
 
-  static generateToken(model: any) {
+  static generateToken(model: any, dataObject: any = 'user') {
+    let saveObjectToken;
+    if (dataObject === 'user') {
+      saveObjectToken = { user: { id: model.id, name: model.name } }
+    }
+
+    if (dataObject === 'admin') {
+      saveObjectToken = { admin: { id: model.id, name: model.name } }
+    }
+
+    if (dataObject === 'tenant') {
+      saveObjectToken = { tenant: { id: model.id, name: model.name } }
+    }
     const token: string = jwt.sign(
-      { user: { id: model.id, name: model.name } },
+      saveObjectToken,
       process.env.SERVER_JWT_SECRET,
       { expiresIn: process.env.SERVER_JWT_TIMEOUT }
     );

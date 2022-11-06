@@ -92,10 +92,8 @@ export default class UserController {
     try {
       const user = await User.findOne({ where: { id } })
       return res.status(200).json({ message: "OK", data: user });
-
     } catch (error) {
       res.status(500);
     }
   }
-
 }

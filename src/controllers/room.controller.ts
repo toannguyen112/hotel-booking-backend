@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { Request, Response } from "express";
 import paginate from "jw-paginate";
 import { Op } from "sequelize";
@@ -115,6 +116,7 @@ export default class RoomController {
   }
 
   async show(req: Request, res: Response) {
+
     try {
       const { id } = req.params;
       const data = await Room.findOne({

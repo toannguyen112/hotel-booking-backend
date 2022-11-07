@@ -13,11 +13,12 @@ export default class MediaController {
 
   async store(req: Request, res: Response) {
     const images = req["files"];
-    let arrImage: File[] = [];
+
+    let arrImage = [];
 
     for await (const image of images) {
       const file = await File.storeMedia(image)
-     arrImage = [...arrImage,file]  ;
+      arrImage = [...arrImage, file];
     }
 
     return res.status(200).json({

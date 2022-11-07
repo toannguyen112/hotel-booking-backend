@@ -39,6 +39,16 @@ module.exports = {
         allowNull: true,
       },
 
+      lat: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+
+      lng: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+
       slug: {
         type: Sequelize.STRING,
         allowNull: true,

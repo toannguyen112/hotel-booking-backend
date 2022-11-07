@@ -22,7 +22,6 @@ export default class Room extends Model {
   @Column
   category_id: number;
 
-
   @ForeignKey(() => Region)
   @Column
   city_id: number;
@@ -33,6 +32,12 @@ export default class Room extends Model {
 
   @Column
   name: string;
+
+  @Column
+  lat: number;
+
+  @Column
+  lng: number;
 
   @Column
   slug: string;

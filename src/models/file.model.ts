@@ -60,8 +60,8 @@ export default class File extends Model<File> {
     };
 
     const data = await File.findOne({ where: { filename: image.filename } });
-
     if (!data) return await File.create(file);
+    if (data) return data;
   }
 }
 

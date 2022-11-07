@@ -63,7 +63,9 @@ class User extends Model {
 
       if (!foundUser) return res.status(500).send("Name of user is not correct");
 
-      const isMatch: boolean = bcrypt.compareSync(req.body.password, foundUser.password);
+      // const isMatch: boolean = bcrypt.compareSync(req.body.password, foundUser.password);
+
+      const isMatch: boolean = req.body.password === foundUser.password;
 
       if (isMatch) {
 
@@ -93,14 +95,14 @@ class User extends Model {
 
       if (foundUser) return res.status(200).json({ message: "User is exit" });
 
-      const hashPassword = await Helper.hashPassword(password);
+      // const hashPassword = await Helper.hashPassword(password);
 
       const admin = await Admin.findOne();
 
       const newUser = await User.create({
         username: username,
         admin_id: admin.id,
-        password: hashPassword,
+        password: password,
       });
 
       return res.status(200).json({

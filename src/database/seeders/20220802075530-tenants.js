@@ -5,13 +5,13 @@ module.exports = {
     await queryInterface.bulkInsert("tenants", [
       {
         id: 1,
-        username: `tenant 1`,
-        password: `123`,
+        username: `tenant`,
+        password: `tenant`,
       },
       {
         id: 2,
-        username: `tenant 2`,
-        password: `123`,
+        username: `tenant1`,
+        password: `tenant1`,
       },
     ]);
   },

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import Room from "../models/room.model";
 import Tenant from "../models/tenant.model";
 import AuthController from "./auth.controller";
 export default class TenantController extends AuthController {
@@ -30,4 +31,23 @@ export default class TenantController extends AuthController {
             res.status(500);
         }
     }
+
+    async getRooms(req: Request, res: Response) {
+        const { id } = req.tenant;
+        try {
+            const rooms = await Room.findAll({
+                include: {
+                    model: Tenant,
+                    as: 'tenant',
+                    where: { id }
+                }
+            },)
+            return res.status(200).json({ message: "OK", data: rooms });
+
+        } catch (error) {
+            res.status(500);
+        }
+    }
+
+
 }

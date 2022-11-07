@@ -36,12 +36,13 @@ module.exports = {
 
       status: {
         type: Sequelize.STRING,
-        allowNull: true,
+        defaultValue: "INACTIVE"
       },
 
       phone: {
         allowNull: true,
         type: Sequelize.INTEGER,
+        defaultValue: "0775600351"
       },
 
       createdAt: {

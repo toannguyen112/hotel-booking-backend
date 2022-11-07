@@ -3,9 +3,10 @@ import TenantController from "../controllers/tenant.controller";
 import { tenantAuth } from "../middlewares/tenantAuth.middleware";
 const route: Router = Router();
 
-route.get("/tenants/index", new TenantController().index);
+route.get("/tenant/index", new TenantController().index);
 route.post("/tenant/logout", tenantAuth, new TenantController().logout);
 route.post("/tenant/login", new TenantController().login);
 route.get("/tenant/profile", tenantAuth, new TenantController().profile);
+route.get("/tenant/get-rooms", tenantAuth, new TenantController().getRooms);
 
 export default route;

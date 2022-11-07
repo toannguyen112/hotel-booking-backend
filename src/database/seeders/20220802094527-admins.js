@@ -6,7 +6,7 @@ module.exports = {
         id: 1,
         username: `admin`,
         name: `admin`,
-        password: `123`,
+        password: `admin`,
       },
     ]);
   },

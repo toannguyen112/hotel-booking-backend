@@ -1,6 +1,5 @@
 import fs from 'fs';
 import { Request, Response } from "express";
-import paginate from "jw-paginate";
 import { Op } from "sequelize";
 import Category from "../models/categories.model";
 import Room from "../models/room.model";
@@ -98,13 +97,16 @@ export default class RoomController {
 
   async create(req: Request, res: Response) {
     try {
+
       const room = await Room.create(req.body);
       const images = req.body.images;
+
       for await (const image of images) {
         const roomFile = {
           room_id: room.id,
           file_id: image.id,
         };
+
         await RoomFile.create(roomFile);
       }
 
@@ -116,7 +118,6 @@ export default class RoomController {
   }
 
   async show(req: Request, res: Response) {
-
     try {
       const { id } = req.params;
       const data = await Room.findOne({

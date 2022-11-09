@@ -10,6 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
+      role_id: {
+        type: Sequelize.INTEGER
+      },
+
       username: {
         allowNull: false,
         type: Sequelize.STRING,

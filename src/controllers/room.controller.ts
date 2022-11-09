@@ -1,7 +1,8 @@
-import fs from 'fs';
+
 import { Request, Response } from "express";
 import { Op } from "sequelize";
 import Category from "../models/categories.model";
+import File from "../models/file.model";
 import Room from "../models/room.model";
 import RoomFile from "../models/roomFile.model";
 import Tenant from "../models/tenant.model";
@@ -120,9 +121,10 @@ export default class RoomController {
   async show(req: Request, res: Response) {
     try {
       const { id } = req.params;
+
       const data = await Room.findOne({
         where: { id },
-        include: [Category, Tenant],
+        include: [Category, Tenant, File],
       });
 
       return res.status(200).json({ message: "OK", data: data });

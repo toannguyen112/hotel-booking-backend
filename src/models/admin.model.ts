@@ -1,7 +1,7 @@
-import bcrypt from "bcrypt";
-import { Table, PrimaryKey, Column, Model, DataType } from "sequelize-typescript";
+import { Table, PrimaryKey, Column, Model, DataType, ForeignKey } from "sequelize-typescript";
 import Helper from '../utils/Helpers';
 import { Request, Response } from "express";
+import Role from "./role.model";
 
 interface typeTokens {
   token: string
@@ -16,6 +16,9 @@ class Admin extends Model {
     autoIncrement: true,
   })
   id: string;
+
+  @Column
+  role_id: number;
 
   @Column
   name: string;

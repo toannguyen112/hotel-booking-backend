@@ -4,15 +4,28 @@ module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable("permissions", {
       id: {
-        primaryKey: true,
-        unique: true,
+        allowNull: false,
         autoIncrement: true,
-        type: Sequelize.INTEGER,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      perm_name: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+      },
+      perm_description: {
+        type: Sequelize.STRING,
+        unique: false
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
 
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     }),
 

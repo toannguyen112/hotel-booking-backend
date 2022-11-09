@@ -84,13 +84,13 @@ export default class Room extends Model {
 
   public transform(item) {
     return {
-      ...item
+      item
     }
   }
 
   public transformDetails(item) {
     return {
-      ...item
+      item
     }
   }
 }

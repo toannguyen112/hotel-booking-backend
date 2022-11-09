@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 import bcrypt from "bcrypt";
+import Permission from "../models/permission";
+import RolePermission from "../models/role_permission";
 export default class Helper {
   static randomString(length: number): string {
     var result: string = "";
@@ -41,7 +43,7 @@ export default class Helper {
     }
 
     if (dataObject === 'admin') {
-      saveObjectToken = { admin: { id: model.id, name: model.name } }
+      saveObjectToken = { admin: { id: model.id, name: model.name, role_id: model.role_id } }
     }
 
     if (dataObject === 'tenant') {
@@ -62,6 +64,36 @@ export default class Helper {
   static async hashPassword(password: string = "123", number: number = 8) {
     const hashedPassword = await bcrypt.hash(password, number);
     return hashedPassword;
+  }
+
+  static checkPermission(roleId, permName) {
+    return new Promise(
+      (resolve, reject) => {
+        Permission.findOne({
+          where: {
+            perm_name: permName
+          }
+        }).then((perm) => {
+          RolePermission.findOne({
+            where: {
+              role_id: roleId,
+              perm_id: perm.id
+            }
+          }).then((rolePermission) => {
+            // console.log(rolePermission);
+            if (rolePermission) {
+              resolve(rolePermission);
+            } else {
+              reject({ message: 'Forbidden' });
+            }
+          }).catch((error) => {
+            reject(error);
+          });
+        }).catch(() => {
+          reject({ message: 'Forbidden' });
+        });
+      }
+    );
   }
 
 }

@@ -17,6 +17,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
+
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
     }),
 
   down: (queryInterface) => queryInterface.dropTable("role_permissions"),

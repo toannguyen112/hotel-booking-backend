@@ -43,11 +43,16 @@ export default class TenantController extends AuthController {
                 }
             },)
             return res.status(200).json({ message: "OK", data: rooms });
-
         } catch (error) {
             res.status(500);
         }
     }
 
+    async update(req: Request, res: Response) {
+        const { id } = req.tenant;
+        await Tenant.update({ ...req.body }, { where: { id } })
+        const tenant = await Tenant.findOne({ where: { id } })
+        return res.status(200).json(tenant);
+    }
 
 }

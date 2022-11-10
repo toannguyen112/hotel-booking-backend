@@ -14,6 +14,12 @@ export default class UserController {
     return new User().login(req, res);
   }
 
+  async update(req: Request, res: Response) {
+    await User.update({ ...req.body }, { where: { id: req.user.id } })
+    const user = await User.findOne({ where: { id: req.user.id } })
+    return res.status(200).json(user);
+  }
+
   async register(req: Request, res: Response) {
     return new User().register(req, res);
   }

@@ -15,7 +15,6 @@ export default class RoleController {
     }
 
     async create(req: Request, res: Response) {
-        console.log(req.body);
 
         const { role_name, permissions } = req.body;
 
@@ -51,15 +50,14 @@ export default class RoleController {
         }
     }
 
-
     async update(req: Request, res: Response) {
         const { role_id, role_name, permissions } = req.body;
 
-        await Role.update({ role_name }, { where: { id: role_id } })
+        await RolePermission.destroy({ where: { role_id } });
 
-        const rolePermissions = await RolePermission.findAll({
-            where: role_id
-        });
+        for await (const permission of permissions) {
+            await RolePermission.create({ role_id, permission_id: permission });
+        }
 
         const roles = await Role.findAll({})
 

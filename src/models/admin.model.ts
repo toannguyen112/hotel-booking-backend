@@ -1,4 +1,4 @@
-import { Table, PrimaryKey, Column, Model, DataType, ForeignKey } from "sequelize-typescript";
+import { Table, PrimaryKey, Column, Model, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import Helper from '../utils/Helpers';
 import { Request, Response } from "express";
 import Role from "./role.model";
@@ -15,10 +15,12 @@ class Admin extends Model {
   @Column({
     autoIncrement: true,
   })
-  id: string;
+  id: number;
 
+  @ForeignKey(() => Role)
   @Column
   role_id: number;
+
 
   @Column
   name: string;
@@ -42,6 +44,9 @@ class Admin extends Model {
 
   @Column
   phone: string;
+
+  @BelongsTo(() => Role)
+  role: Role;
 
   async login(req: Request, res: Response): Promise<any> {
     try {

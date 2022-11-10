@@ -12,19 +12,23 @@ module.exports = {
       },
       {
         id: 3,
-        perm_name: `get_all_room`,
+        perm_name: `tenants`,
       },
       {
         id: 4,
-        perm_name: `get_all_users`,
+        perm_name: `users`,
       },
       {
         id: 5,
-        perm_name: `account`,
+        perm_name: `accounts`,
       },
       {
         id: 6,
-        perm_name: `role`,
+        perm_name: `roles`,
+      },
+      {
+        id: 7,
+        perm_name: `maps`,
       },
     ]);
   },

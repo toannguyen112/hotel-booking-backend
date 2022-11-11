@@ -98,17 +98,25 @@ export default class RoomController {
 
   async create(req: Request, res: Response) {
     try {
+      const images = req["files"];
+      console.log(images);
 
       const room = await Room.create(req.body);
-      const images = req.body.images;
 
-      for await (const image of images) {
-        const roomFile = {
-          room_id: room.id,
-          file_id: image.id,
-        };
+      if (images.length) {
 
-        await RoomFile.create(roomFile);
+        let arrImage = [];
+        for await (const image of images) {
+          const file = await File.storeMedia(image)
+          arrImage = [...arrImage, file];
+        }
+
+        for await (const image of arrImage) {
+          await RoomFile.create({
+            room_id: room.id,
+            file_id: image.id,
+          });
+        }
       }
 
       const data = await Room.findAll({});

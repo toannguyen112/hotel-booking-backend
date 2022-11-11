@@ -13,6 +13,7 @@ export default class MediaController {
 
   async store(req: Request, res: Response) {
     const images = req["files"];
+    console.log(images);
 
     let arrImage = [];
 

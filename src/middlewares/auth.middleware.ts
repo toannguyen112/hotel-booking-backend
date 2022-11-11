@@ -25,7 +25,6 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
         next();
 
     } catch (err) {
-        console.log(err);
         return res.status(401).send({ message: 'Please authenticate user' });
     }
 };

@@ -78,6 +78,7 @@ export default class RoomController {
       .filter(conditions)
       .limitFields()
       .paginate()
+      .includes([File])
       .getObjQuery();
 
     const { count, rows }: any = await Room.findAndCountAll(objQuery);

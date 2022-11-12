@@ -91,11 +91,10 @@ export default class AdminController {
   async updateStatusRoom(req: Request, res: Response) {
     try {
 
-      const { id } = req.admin;
-
+      const roomId = req.body.id;
       await Room.update({
         status: req.body.status,
-      }, { where: { id } });
+      }, { where: { id: roomId } });
 
       const data = await Room.findAll({});
 

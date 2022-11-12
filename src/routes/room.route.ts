@@ -25,7 +25,7 @@ const route = Router();
 route.get("/rooms/index", new RoomController().index);
 route.post("/rooms/create", upload.array("files"), tenantAuth, new RoomController().create);
 route.get("/rooms/show/:id", new RoomController().show);
-route.put("/rooms/update/:id", tenantAuth, new RoomController().update);
+route.put("/rooms/update/:id", upload.array("files"), tenantAuth, new RoomController().update);
 route.delete("/rooms/delete/:id", new RoomController().delete);
 
 export default route;

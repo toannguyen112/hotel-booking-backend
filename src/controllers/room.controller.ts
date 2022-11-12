@@ -99,9 +99,10 @@ export default class RoomController {
   async create(req: Request, res: Response) {
     try {
       const images = req["files"];
-      console.log(images);
 
-      const room = await Room.create(req.body);
+      const reqBody = JSON.parse(req.body.data);
+
+      const room = await Room.create({ ...reqBody, tenant_id: req.tenant.id });
 
       if (images.length) {
 
@@ -143,8 +144,30 @@ export default class RoomController {
 
   async update(req: Request, res: Response) {
     try {
-      const { id, body } = req.params;
-      const data = await Room.update({ body }, { where: { id } });
+      const reqBody = JSON.parse(req.body.data);
+      const images = req["files"];
+
+      await RoomFile.destroy({ where: { room_id: reqBody.id } })
+
+      if (images.length) {
+
+        let arrImage = [];
+        for await (const image of images) {
+          const file = await File.storeMedia(image)
+          arrImage = [...arrImage, file];
+        }
+
+        for await (const image of arrImage) {
+          await RoomFile.create({
+            room_id: reqBody.id,
+            file_id: image.id,
+          });
+        }
+      }
+
+
+      const data = await Room.update({ ...reqBody }, { where: { id: reqBody.id } });
+
       return res.status(200).json({ message: "OK", data });
     } catch (error) {
       res.status(500).send(error);

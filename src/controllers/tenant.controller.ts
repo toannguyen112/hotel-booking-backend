@@ -22,6 +22,35 @@ export default class TenantController extends AuthController {
         return new Tenant().logout(req, res);
     }
 
+    async create(req: Request, res: Response) {
+        try {
+            console.log(req.body);
+
+            await Tenant.create({
+                ...req.body
+            });
+
+            const data = await Room.findAll({});
+            return res.status(200).json({ message: "OK", data: data });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+
+    async show(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const data = await Tenant.findOne({
+                where: { id },
+            });
+
+            return res.status(200).json({ message: "OK", data: data });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+
     async profile(req: Request, res: Response) {
         const { id } = req.tenant;
         try {

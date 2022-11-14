@@ -13,16 +13,12 @@ export default class MediaController {
 
   async store(req: Request, res: Response) {
     const images = req["files"];
-    let arrImage = [];
-    for await (const image of images) {
-      const file = await File.storeMedia(image)
-      arrImage = [...arrImage, file];
-    }
 
-    return res.status(200).json({
-      message: "Upload File Success",
-      data: arrImage,
-    });
+    for await (const image of images) {
+      await File.storeMedia(image)
+    }
+    const data = await File.findAll({});
+    return res.status(200).json({ message: "OK", data });
   }
 
   async delete(req: Request, res: Response) {

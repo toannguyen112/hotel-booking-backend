@@ -20,7 +20,7 @@ const upload = multer({ storage: storage });
 const route = Router();
 
 route.get("/media/index", new MediaController().index);
-route.post("/media/store", upload.any(), new MediaController().store);
+route.post("/media/store", upload.array("files"), new MediaController().store);
 route.delete("/media/delete/:id", new MediaController().delete);
 
 export default route;

@@ -18,7 +18,7 @@ const optionsDevelopment = {
 }
 
 // Create conditional Sequelize database options here
-const sequelizeOptions = process.env.NODE_ENV === 'development'
+const sequelizeOptions = process.env.NODE_ENV === 'production'
   ? optionsProduction
   : optionsDevelopment
 

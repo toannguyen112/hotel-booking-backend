@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon src/app.ts",
     "build": "tsc",
-    "start": "export NODE_ENV=dev && node dist/app.js",
+    "start": "node dist/app.js",
     "test": "jest",
     "seeder": "ts-node src/assets/import/index.ts"
   },

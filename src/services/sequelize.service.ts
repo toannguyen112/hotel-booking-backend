@@ -1,22 +1,32 @@
 import dotenv from "dotenv";
 import { Sequelize } from "sequelize-typescript";
 import path from "path";
+import Helper from "../utils/Helper";
 dotenv.config();
 
-const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;
+
+const optionsProduction = Helper.parseDatabaseUrl(DATABASE_URL)
+const optionsDevelopment = {
+  database: DB_NAME,
+  username: DB_USER,
+  password: DB_PASS
+}
+
+// Create conditional Sequelize database options here
+const sequelizeOptions = process.env.NODE_ENV === 'development'
+  ? optionsProduction
+  : optionsDevelopment
 
 export default class SequelizeService {
   static async init() {
 
     try {
       let sequelize = new Sequelize({
-        database: DB_NAME,
         dialect: "mysql",
-        username: DB_USER,
-        password: DB_PASS,
         port: 3306,
         logging: false,
-        host: "127.0.0.1",
+        ...sequelizeOptions,
         define: {
           timestamps: false,
         },

@@ -4,9 +4,9 @@ import path from "path";
 import Helper from "../utils/Helper";
 dotenv.config();
 
-const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;
+const { DB_USER, DB_PASS, DB_HOST, DB_NAME, CLEARDB_DATABASE_URL } = process.env;
 
-const optionsProduction = Helper.parseDatabaseUrl(DATABASE_URL)
+const optionsProduction = Helper.parseDatabaseUrl(CLEARDB_DATABASE_URL)
 const optionsDevelopment = {
   database: DB_NAME,
   username: DB_USER,

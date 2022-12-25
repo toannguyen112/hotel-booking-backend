@@ -1,5 +1,5 @@
 import { Table, PrimaryKey, Column, Model, CreatedAt, UpdatedAt, DataType } from "sequelize-typescript";
-import Helper from "../utils/Helpers";
+import Helper from "../utils/Helper";
 import { Request, Response } from "express";
 
 interface typeTokens {

@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 import bcrypt from "bcrypt";
 import Permission from "../models/permission";
 import RolePermission from "../models/role_permission";
+
 export default class Helper {
   static randomString(length: number): string {
     var result: string = "";

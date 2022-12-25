@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 require('dotenv').config()
 import bcrypt from "bcrypt";
 import Admin from "./admin.model";
-import Helper from "../utils/Helpers";
+import Helper from "../utils/Helper";
 import Room from "./room.model";
 import UserRoom from "./userRoom.model";
 

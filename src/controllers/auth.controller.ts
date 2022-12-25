@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import Helper from "../utils/Helpers";
+import Helper from "../utils/Helper";
 import Admin from "../models/admin.model";
 import User from "../models/user.model";
 export default class AuthController {

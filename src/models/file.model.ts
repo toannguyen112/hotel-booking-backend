@@ -1,5 +1,5 @@
 import { Table, Model, PrimaryKey, Column, BelongsToMany } from "sequelize-typescript";
-import Helper from "../utils/Helpers";
+import Helper from "../utils/Helper";
 import Room from "./room.model";
 import RoomFile from "./roomFile.model";
 

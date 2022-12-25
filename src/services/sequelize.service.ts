@@ -14,7 +14,9 @@ export default class SequelizeService {
         dialect: "mysql",
         username: DB_USER,
         password: DB_PASS,
-        host: DB_HOST,
+        port: 3306,
+        logging: false,
+        host: "127.0.0.1",
         define: {
           timestamps: false,
         },

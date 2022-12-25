@@ -97,6 +97,9 @@ export default class Helper {
   }
 
   static parseDatabaseUrl(url) {
+
+    console.log(url);
+
     var pattern = /^(?:([^:\/?#\s]+):\/{2})?(?:([^@\/?#\s]+)@)?([^\/?#\s]+)?(?:\/([^?#\s]*))?(?:[?]([^#\s]+))?\S*$/;
     var matches = url.match(pattern);
     var params = {};

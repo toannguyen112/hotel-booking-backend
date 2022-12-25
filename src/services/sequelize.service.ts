@@ -6,7 +6,11 @@ dotenv.config();
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, CLEARDB_DATABASE_URL } = process.env;
 
-const optionsProduction = Helper.parseDatabaseUrl(CLEARDB_DATABASE_URL)
+const optionsProduction = {
+  database: "heroku_d7df2d9631100e4",
+  username: "bf1ddefbecd743",
+  password: "d799e44d"
+}
 const optionsDevelopment = {
   database: DB_NAME,
   username: DB_USER,
@@ -21,6 +25,7 @@ const sequelizeOptions = process.env.NODE_ENV === 'development'
 export default class SequelizeService {
   static async init() {
 
+    console.log(process.env.NODE_ENV);
     console.log("test:", sequelizeOptions);
 
     try {

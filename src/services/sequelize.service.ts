@@ -44,7 +44,6 @@ export default class SequelizeService {
           console.error("Unable to connect to the database: ", error);
         });
 
-
       // init sequelize model
       sequelize.addModels([path.resolve(__dirname, `../models/`)]);
 

@@ -11,6 +11,7 @@ module.exports = {
       },
 
       tenant_id: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "tenants",
@@ -19,6 +20,7 @@ module.exports = {
       },
 
       category_id: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "categories",
@@ -27,6 +29,7 @@ module.exports = {
       },
 
       city_id: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: "regions",

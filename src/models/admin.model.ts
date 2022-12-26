@@ -21,7 +21,6 @@ class Admin extends Model {
   @Column
   role_id: number;
 
-
   @Column
   name: string;
 

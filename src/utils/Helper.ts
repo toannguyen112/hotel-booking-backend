@@ -116,7 +116,7 @@ export default class Helper {
       password: matches[2] != undefined ? matches[2].split(':')[1] : undefined,
       host: matches[3],
       hostname: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[0] : undefined,
-      port: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[1] : undefined,
+      // port: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[1] : undefined,
       segments: matches[4] != undefined ? matches[4].split('/') : undefined,
       params: params
     };

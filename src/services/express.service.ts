@@ -32,7 +32,9 @@ export default class ExpressService {
         res.status(404).send(`Can find ${req.originalUrl} on this server`);
       });
 
-      const server = app.listen(8000);
+      const PORT = process.env.PORT || 3000;
+
+      const server = app.listen(PORT);
       process.on("uncaughtException", (err) => {
         console.log(err.name, err.message);
         server.close(() => {

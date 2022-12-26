@@ -7,10 +7,10 @@ dotenv.config();
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;
 
 const optionsProduction = {
-  database: "heroku_d7df2d9631100e4",
-  username: "bf1ddefbecd743",
-  password: "d799e44d",
-  host: "us-cdbr-east-06.cleardb.net",
+  database: "zkzljluzu5tj7sx5",
+  username: "pzagaqfvcjji6ign",
+  password: "tguj9vd9dlhblnaw",
+  host: "h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 }
 
 const optionsDevelopment = {

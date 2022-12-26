@@ -4,17 +4,15 @@ import path from "path";
 import Helper from "../utils/Helper";
 dotenv.config();
 
-const { DB_USER, DB_PASS, DB_HOST, DB_NAME, CLEARDB_DATABASE_URL } = process.env;
+const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;
 
-const optionsProduction = {
-  database: "heroku_d7df2d9631100e4",
-  username: "bf1ddefbecd743",
-  password: "d799e44d"
-}
+const optionsProduction = Helper.parseDatabaseUrl(DATABASE_URL)
+
 const optionsDevelopment = {
   database: DB_NAME,
   username: DB_USER,
-  password: DB_PASS
+  password: DB_PASS,
+
 }
 
 // Create conditional Sequelize database options here
@@ -25,15 +23,13 @@ const sequelizeOptions = process.env.NODE_ENV === 'production'
 export default class SequelizeService {
   static async init() {
 
-    console.log(process.env.NODE_ENV);
-    console.log("test:", sequelizeOptions);
-
     try {
       let sequelize = new Sequelize({
         dialect: "mysql",
         port: 3306,
         logging: false,
         ...sequelizeOptions,
+        host: DB_HOST,
         define: {
           timestamps: false,
         },

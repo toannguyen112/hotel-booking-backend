@@ -1,7 +1,11 @@
+import dotenv from "dotenv";
+dotenv.config();
+const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
+
 module.exports = {
-  database: "hotel-booking",
+  database: DB_NAME,
   dialect: "mysql",
-  username: "root",
-  password: "root",
-  host: "localhost",
+  username: DB_USER,
+  password: DB_PASS,
+  host: DB_HOST,
 };

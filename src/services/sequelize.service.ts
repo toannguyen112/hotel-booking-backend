@@ -23,6 +23,8 @@ const sequelizeOptions = process.env.NODE_ENV === 'production'
 export default class SequelizeService {
   static async init() {
 
+    console.log(optionsProduction);
+
     try {
       let sequelize = new Sequelize({
         dialect: "mysql",

@@ -98,8 +98,6 @@ export default class Helper {
 
   static parseDatabaseUrl(url) {
 
-    console.log(url);
-
     var pattern = /^(?:([^:\/?#\s]+):\/{2})?(?:([^@\/?#\s]+)@)?([^\/?#\s]+)?(?:\/([^?#\s]*))?(?:[?]([^#\s]+))?\S*$/;
     var matches = url.match(pattern);
     var params = {};
@@ -117,6 +115,7 @@ export default class Helper {
       host: matches[3],
       hostname: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[0] : undefined,
       // port: matches[3] != undefined ? matches[3].split(/:(?=\d+$)/)[1] : undefined,
+      port: 3306,
       segments: matches[4] != undefined ? matches[4].split('/') : undefined,
       params: params
     };

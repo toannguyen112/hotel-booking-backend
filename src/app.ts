@@ -11,6 +11,7 @@ const services = [expressService, sequelizeService];
     for (const service of services) {
       await service.init();
     }
+
   } catch (error) {
     console.log(error);
     process.exit(1);

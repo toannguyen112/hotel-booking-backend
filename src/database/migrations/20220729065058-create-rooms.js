@@ -17,6 +17,7 @@ module.exports = {
           model: "tenants",
           key: "id",
         },
+        onDelete: 'SET NULL',
       },
 
       category_id: {
@@ -26,6 +27,7 @@ module.exports = {
           model: "categories",
           key: "id",
         },
+        onDelete: 'SET NULL',
       },
 
       city_id: {
@@ -35,6 +37,7 @@ module.exports = {
           model: "regions",
           key: "id",
         },
+        onDelete: 'SET NULL',
       },
 
       name: {

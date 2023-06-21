@@ -79,12 +79,12 @@ export default class UserController {
     try {
       const { id } = req.params;
 
-      const order = await UserRoom.findAll({
-        where: { user_id: id },
+      const order = await User.findOne({
+        where: { id },
         include: [Room]
-      })
+      });
 
-      const data = order.map((item) => item.transform(item));
+      const data = order['rooms'].map((item) => item.transform(item));
 
 
       return res.status(200).json({ message: "OK", data: data });
@@ -99,6 +99,36 @@ export default class UserController {
       const user = await User.findOne({ where: { id } })
       return res.status(200).json({ message: "OK", data: user });
     } catch (error) {
+      res.status(500);
+    }
+  }
+
+  async deleteRoom(req: Request, res: Response) {
+
+    try {
+      const { id } = req.params;
+      const { roomId } = req.params;
+
+      let userRoom: any = await UserRoom.findOne({
+        where: {
+          user_id: id, room_id: roomId
+        }
+      });
+
+      await UserRoom.destroy({
+        where: { id: userRoom.id }
+      });
+
+      const order = await User.findOne({
+        where: { id: id },
+        include: [Room]
+      })
+
+      const data = order['rooms'].map((item) => item.transform(item));
+
+      return res.status(200).json({ message: "OK", data: data });
+    } catch (error) {
+      console.log(error);
       res.status(500);
     }
   }

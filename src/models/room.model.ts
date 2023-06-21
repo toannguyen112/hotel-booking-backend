@@ -84,7 +84,13 @@ export default class Room extends Model {
 
   public transform(item) {
     return {
-      item
+      id: item.id,
+      room_name: item.name,
+      room_price: item.price,
+      image: item.image,
+      status: item.status,
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt,
     }
   }
 

@@ -71,7 +71,8 @@ export default class TenantController extends AuthController {
                     {
                         model: File,
                         required: false
-                    }, {
+                    },
+                    {
                         model: Tenant,
                         as: 'tenant',
                         where: { id }
@@ -79,6 +80,7 @@ export default class TenantController extends AuthController {
             },)
             return res.status(200).json({ message: "OK", data: rooms });
         } catch (error) {
+            console.log(error);
             res.status(500);
         }
     }

@@ -12,5 +12,6 @@ route.get("/user/show/:id", new UserController().show);
 route.post("/user/logout", auth, new UserController().logout);
 route.post("/user/order", auth, new UserController().order);
 route.get("/user/:id/get-user-order", new UserController().getUserOrder);
+route.delete("/user/:id/delete-room/:roomId", new UserController().deleteRoom);
 
 export default route;

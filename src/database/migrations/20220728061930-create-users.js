@@ -16,6 +16,7 @@ module.exports = {
           model: "admins",
           key: "id",
         },
+        onDelete: 'SET NULL',
       },
 
       name: {

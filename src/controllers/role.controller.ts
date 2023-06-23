@@ -33,7 +33,12 @@ export default class RoleController {
     }
 
     async delete(req: Request, res: Response) {
-        return res.status(200).json('home');
+        const { id } = req.params;
+
+        await Role.destroy({ where: { id } })
+
+        const Roles = await Role.findAll({})
+        return res.status(200).json(Roles);
     }
 
     async show(req: Request, res: Response) {

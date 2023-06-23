@@ -42,6 +42,15 @@ export default class AdminController {
     return res.status(200).json(admins);
   }
 
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    await Admin.destroy({ where: { id } })
+
+    const admins = await Admin.findAll({})
+    return res.status(200).json(admins);
+  }
+
   async update(req: Request, res: Response) {
     await Admin.update({ ...req.body }, { where: { id: req.params.id } })
     const admin = await Admin.findAll({})

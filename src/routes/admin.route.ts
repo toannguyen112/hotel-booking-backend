@@ -9,6 +9,7 @@ route.get("/admin/rooms", new AdminController().getRooms);
 route.get("/admin/get-users", new AdminController().getUsers);
 route.get("/admin/show/:id", new AdminController().show);
 route.post("/admin/create", new AdminController().create);
+route.delete("/admin/delete/:id", new AdminController().delete);
 route.put("/admin/update/:id", new AdminController().update);
 route.post("/admin/login", new AdminController().login);
 route.post("/admin/logout", adminAuth, new AdminController().logout);

@@ -1,16 +1,16 @@
 import dotenv from "dotenv";
 import { Sequelize } from "sequelize-typescript";
 import path from "path";
-import Helper from "../utils/Helper";
+
 dotenv.config();
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DATABASE_URL } = process.env;
 
 const optionsProduction = {
-  database: "zkzljluzu5tj7sx5",
-  username: "pzagaqfvcjji6ign",
-  password: "tguj9vd9dlhblnaw",
-  host: "h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  database: "r8oph72f64vs1ucy",
+  username: "puduo0ebxbdgv1sx",
+  password: "c6k2y2hf0vkpkxj9",
+  host: "x8autxobia7sgh74.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 }
 
 const optionsDevelopment = {

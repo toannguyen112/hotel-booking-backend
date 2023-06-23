@@ -9,3 +9,4 @@ module.exports = {
   password: DB_PASS,
   host: DB_HOST,
   port: 3306
+};

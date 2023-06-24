@@ -33,11 +33,6 @@ module.exports = {
       city_id: {
         allowNull: true,
         type: Sequelize.INTEGER,
-        references: {
-          model: "regions",
-          key: "id",
-        },
-        onDelete: 'SET NULL',
       },
 
       name: {

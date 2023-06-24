@@ -101,7 +101,12 @@ export default class RoomController {
     try {
       const images = req["files"];
       const reqBody = JSON.parse(req.body.data);
-      const room = await Room.create({ ...reqBody, tenant_id: req.tenant.id });
+
+      const room = await Room.create({
+        ...reqBody,
+        city_id: Number(reqBody.city_id),
+        tenant_id: req.tenant.id
+      });
 
       if (images.length) {
         let arrImage = [];

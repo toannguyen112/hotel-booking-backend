@@ -73,6 +73,25 @@ export default class TenantController extends AuthController {
         }
     }
 
+    async deleteRoom(req: Request, res: Response) {
+
+        try {
+            const { id } = req.tenant;
+
+            const { roomId } = req.params;
+
+            await Room.update({ tenant_id: null }, {
+                where: {
+                    id: roomId
+                }
+            });
+            const data = await Tenant.findAll({});
+            return res.status(200).json({ message: "OK", data: data });
+        } catch (error) {
+            res.status(500);
+        }
+    }
+
     async getRooms(req: Request, res: Response) {
         const { id } = req.tenant;
         try {

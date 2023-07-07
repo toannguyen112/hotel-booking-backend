@@ -62,7 +62,7 @@ class User extends Model {
       const foundUser = await User.findOne({ where: { username: req.body.username } });
 
       if (!foundUser) return res.status(500).send({
-        message: "Name of user is not correct"
+        message: "Tên người dùng không chính xác"
       });
 
       // const isMatch: boolean = bcrypt.compareSync(req.body.password, foundUser.password);

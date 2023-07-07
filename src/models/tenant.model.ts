@@ -52,7 +52,7 @@ class Tenant extends Model {
     try {
       const foundTenant = await Tenant.findOne({ where: { username: req.body.username } });
 
-      if (!foundTenant) return res.status(500).send("Name of user is not correct");
+      if (!foundTenant) return res.status(500).send("Tên người dùng không chính xác");
 
       const isMatch: boolean = req.body.password === foundTenant.password;
 

@@ -9,7 +9,7 @@ export default class AuthController {
     try {
       const foundUser = await User.findOne({ where: { username: req.body.username } });
 
-      if (!foundUser) return res.status(500).send("Name of user is not correct");
+      if (!foundUser) return res.status(500).send("Tên người dùng không chính xác");
 
       const isMatch: boolean = bcrypt.compareSync(req.body.password, foundUser.password);
 

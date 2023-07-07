@@ -137,7 +137,11 @@ export default class RoomController {
         where: { id },
         include: [Category, Tenant, File],
       });
-      return res.status(200).json({ message: "OK", data: data });
+
+
+      return res.status(200).json({
+        message: "OK", data
+      });
     } catch (error) {
       res.status(500).send(error);
     }
@@ -146,6 +150,8 @@ export default class RoomController {
   async update(req: Request, res: Response) {
     try {
       const reqBody = JSON.parse(req.body.data);
+      console.log(reqBody);
+
       const images = req["files"];
       if (images.length) {
         await RoomFile.destroy({ where: { room_id: reqBody.id } })

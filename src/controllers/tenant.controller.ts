@@ -80,7 +80,7 @@ export default class TenantController extends AuthController {
 
             const { roomId } = req.params;
 
-            await Room.update({ tenant_id: null }, {
+            await Room.destroy({
                 where: {
                     id: roomId
                 }

@@ -87,6 +87,7 @@ export default class Room extends Model {
       id: item.id,
       room_name: item.name,
       room_price: item.price,
+      phone: item.phone,
       image: item.image,
       status: item.status,
       createdAt: item.createdAt,

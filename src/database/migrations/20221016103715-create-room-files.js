@@ -16,6 +16,7 @@ module.exports = {
           model: "files",
           key: "id",
         },
+        onDelete: 'SET NULL',
       },
 
       room_id: {
@@ -24,6 +25,7 @@ module.exports = {
           model: "rooms",
           key: "id",
         },
+        onDelete: 'SET NULL',
       },
 
       createdAt: {

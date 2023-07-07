@@ -12,10 +12,12 @@ module.exports = {
       role_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: 'SET NULL',
       },
       permission_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: 'SET NULL',
       },
 
       createdAt: {
